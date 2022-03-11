@@ -1,25 +1,23 @@
 import React, {useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import GifGirdItem from './GifGirdItem';
-import {getGifsAsync} from '../helpers/getGifsURL'
+import { useEffectGift } from '../hooks/useEffectGift';
 
 const GiftGrid = ({category}) => {
 
-  useEffect( () => {
-    getGifsAsync(category)
-      .then(setImages);
-  }, [category])
 
-
-  const [images, setImages] = useState([]);
+  const {loading, data} = useEffectGift(category);
 
   return (
     <>
       <h3>{category}</h3>
+
+      {loading && <p>Loading</p>}
+
       <div className='card-grid'>
           
             {
-              images.map( img => (
+              data.map( img => (
                 <GifGirdItem 
                 key={img.id}
                 {...img}
