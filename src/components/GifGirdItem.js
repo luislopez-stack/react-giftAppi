@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function GifGirdItem({id,title,url}) {
+export function GifGirdItem({id,title,url}) {
   return (
     <div className='card animate__fadeIn animate__animated'>
         <img src={url} alt={title}></img>
@@ -10,6 +10,9 @@ function GifGirdItem({id,title,url}) {
   )
 }
 
-GifGirdItem.propTypes = {}
+GifGirdItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
+}
 
 export default GifGirdItem
